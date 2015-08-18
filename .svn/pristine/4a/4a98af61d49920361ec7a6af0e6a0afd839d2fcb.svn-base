@@ -1,0 +1,60 @@
+<?php
+
+/*  
+ *  @autor Alexandr Kozyr kozyr1av@gmail.com;
+ *  @ phone: +380662053435;
+ *  @ класс AutorizeModel реализует действия по добавлению, 
+ *    изминению и удалению персональной информации о пользователе в БД;
+*/
+
+
+
+class AutorizeModel{
+    
+    
+    public $dataBaseConnection;
+     
+    
+    public function __construct(){
+        $this->dataBaseConnection = DBConnect::connect();
+    }
+      
+    
+    
+    public function insertInfoDB ($name, $sname, $email, $login, $pass){
+        $sql = "INSERT INTO `users` (`name`, `sname`, `email`, `login`, `password`)
+            VALUES ('".$name."', '".$sname."', '".$email."', '".$login."', '".$pass."')";
+        $this->dataBaseConnection->query($sql);
+    }
+    
+    public function updateConfDB ($login){
+        $sql = "UPDATE `users` SET `conf` = '1' WHERE `login` = '".$login."'";     
+        $this->dataBaseConnection->query($sql);
+    }
+        
+    public function getFromDB($login){
+        $stm = $this->dataBaseConnection->prepare("SELECT * FROM `users` WHERE `login` = '".$login."'" );
+        $stm->execute();
+        $r= $stm->fetch(PDO::FETCH_ASSOC);
+        return $r;
+    }
+    public function getFromDB2($email){
+        $stm = $this->dataBaseConnection->prepare("SELECT * FROM `users` WHERE `email` = '".$email."'" );
+        $stm->execute();
+        $r= $stm->fetch(PDO::FETCH_ASSOC);
+        return $r;
+    }
+       
+    public function delFromDB($login){
+        $stm = $this->dataBaseConnection->prepare("DELETE FROM `users` WHERE `login` ='".$login."'");
+        $stm->execute();
+    }
+    
+     public function updateDB($id, $name, $sname, $email, $login, $pass){
+        $stm = $this->dataBaseConnection->prepare(
+                "UPDATE `users` SET name='".$name."', sname='".$sname."', email='".$email."', login='".$login."', password='".$pass."' WHERE id ='".$id."'");
+        $stm->execute();
+    }  
+    
+}
+

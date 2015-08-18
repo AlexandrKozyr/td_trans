@@ -1,0 +1,34 @@
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-03-30 04:44:14
+         compiled from "view\sendMail.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:275855189c5e4d51d0-61217539%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'bc804c1cdcf3058d0c98c15b83589ddb16f6927a' => 
+    array (
+      0 => 'view\\sendMail.tpl',
+      1 => 1427676132,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '275855189c5e4d51d0-61217539',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55189c5e54a696_55540076',
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55189c5e54a696_55540076')) {function content_55189c5e54a696_55540076($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('view/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+<div class="hero-unit">
+    <h2>
+        Check you email to proceed!
+    </h2>
+    <p>
+        <a href="index.php"><button class="btn btn-primary">GO to Autorize Page</button></a>
+    </p>
+</div>
+
+<?php echo $_smarty_tpl->getSubTemplate ('view/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php }} ?>

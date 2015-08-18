@@ -1,0 +1,304 @@
+<?php
+
+/*  
+ * @autor Alexandr Kozyr kozyr1av@gmail.com;
+ * @ phone: +380662053435;
+ * @ класс AutorizeController явлется контролером, связывает логику и представление 
+ *   нашего приложения;
+*/
+
+class AutorizeController {
+    
+    public function __construct(){
+        
+        if(!isset($_SESSION['login'])){     
+            if(isset($_GET['regis'])){
+                $this->registUser();
+            }elseif(isset($_GET['auto'])){
+                $this->autoUser();
+            }elseif(isset($_GET['recov'])){
+                $this->recovUser();
+            }elseif(isset($_GET['conf'])){
+                $this->confUser();
+            }else{
+                $this->autorizePage();
+            }
+        }else{
+            if(isset($_GET['change'])){
+                $this->changeInfoForm();
+            }elseif(isset($_GET['logout'])){
+                session_destroy();
+                $this->autorizePage();
+            }elseif(isset($_GET['del'])){
+                $this->delUser();
+            }else{
+                $this->showPage();
+            }
+        }
+               
+    }
+
+      
+    public function autorizePage(){
+            
+        $smarty = new Smarty();
+        $smarty->display('view/autorize.tpl');
+    }
+    
+    public function autoUser(){
+        
+        $smarty = new Smarty();
+        $showPage = new AutorizeModel();
+        
+        if(isset($_POST)){
+            $val=new Validator();
+            $login = $_POST['log'];
+            $pass = $_POST['pass'];
+            if(!isset($login)||
+                !isset($pass)||
+                $val->validText($login, 4, 10)||
+                $val->validText($pass, 6, 10)||
+                !$val->cDBLogin($login)||
+                !$val->cDBPass($pass)){
+                    
+                $smarty->display('view/badAForm.tpl');
+            
+            }else{
+            $_SESSION['login'] = $login;
+            $r = $showPage->getFromDB($_SESSION['login']);
+            $smarty->assign('pinfo', $r);
+            $smarty->display('view/show.tpl');   
+            }
+        }    
+        
+    } 
+    
+    public function recovUser(){
+        $smarty = new Smarty();
+        $showPage = new AutorizeModel();
+        
+        if(isset($_POST)){
+            $val=new Validator();
+            $email=$_POST['email'];
+                        
+            if(!isset($email)||
+                !$val->validEmail($email)||
+                !$val->cDBEmail($email)){
+                    
+                $smarty->display('view/badRecForm.tpl');
+            
+            }else{
+                $email=$val->clean($email);
+                $mail = new SendMail();
+                $mail->email=$email;
+                $uinf=$showPage->getFromDB2($email);
+                $mail->sendRecover($uinf['login'], $uinf['password']);
+                $smarty->display('view/sendMail.tpl');
+            }
+        }    
+    }
+    
+    public function registUser(){
+        $smarty = new Smarty();
+        $showPage = new AutorizeModel();
+       
+        
+        if(isset($_POST)){
+            $val=new Validator();
+            $info=$_POST;
+            if(!isset($info['email'])||
+                !isset($info['login'])||
+                !isset($info['name'])||
+                !isset($info['sname'])||
+                !isset($info['pass'])||
+                !isset($info['pass_confirmation'])){
+                
+                    $smarty->assign('name', $info['name']);   
+                    $smarty->assign('sname', $info['sname']);   
+                    $smarty->assign('id', $info['id']);   
+                    $smarty->assign('email', $info['email']);   
+                    $smarty->assign('login', $info['login']);   
+                    $smarty->assign('pass', $info['pass']);   
+                             
+                    $smarty->display('view/badCForm.tpl');
+            }elseif(!$val->validEmail($info['email'])||
+                    $val->validText($info['login'], 4, 10)||
+                    $val->validText($info['name'], 4, 20)||
+                    $val->validText($info['sname'], 4, 20)||
+                    $val->validText($info['pass'], 6, 10)||
+                    $info['pass_confirmation'] != $info['pass']){
+                    
+                        $smarty->assign('name', $info['name']);   
+                        $smarty->assign('sname', $info['sname']);   
+                        $smarty->assign('email', $info['email']);   
+                        $smarty->assign('login', $info['login']);   
+                        $smarty->assign('pass', $info['pass']); 
+
+                        $smarty->display('view/badRForm.tpl');
+            }elseif($val->cDBLogin($info['login'])){
+                
+                $smarty->assign('name', $info['name']);   
+                $smarty->assign('sname', $info['sname']);   
+                $smarty->assign('email', $info['email']);   
+                $smarty->assign('login', $info['login']);   
+                $smarty->assign('pass', $info['pass']);   
+                             
+                $smarty->display('view/badRLogin.tpl');
+                
+            }elseif($val->cDBEmail($info['email'])){
+                
+                $smarty->assign('name', $info['name']);   
+                $smarty->assign('sname', $info['sname']);  
+                $smarty->assign('email', $info['email']);   
+                $smarty->assign('login', $info['login']);   
+                $smarty->assign('pass', $info['pass']); 
+                             
+                $smarty->display('view/badREmail.tpl');
+            }else{
+                foreach($info as $v){
+                    $val->clean($v);
+                }
+                $mail = new SendMail();
+                $mail->email=$info['email'];
+                $mail->sendRegister($info['login']);
+                $showPage->insertInfoDB($info['name'], $info['sname'], $info['email'], $info['login'], $info['pass']);
+                $smarty->display('view/sendMail.tpl');
+            }
+        }    
+    }
+    
+    public function confUser(){
+        $smarty = new Smarty();
+        $val = new Validator();
+        $ucnt = $_GET['conf'];
+        
+        
+        if(!isset($ucnt)){
+            $smarty->display('view/autorize.tpl');
+        }elseif($val->validText($ucnt, 4, 10)){
+            $smarty->display('view/autorize.tpl');
+        }elseif(!$val->rDBLogin($ucnt)){
+            $smarty->display('view/autorize.tpl');
+            
+        }else{
+            $showPage = new AutorizeModel();
+            $ucnt = $val->clean($ucnt);
+           
+            $showPage->updateConfDB($ucnt);
+            $smarty = new Smarty();
+            $smarty->display('view/autorize.tpl');
+        }
+        
+    }
+    
+    public function delUser(){
+       
+        $showPage = new AutorizeModel();
+        $showPage->delFromDB($_SESSION['login']);
+        session_destroy();
+        $this->autorizePage();
+    }
+    
+    public function changeInfoForm(){
+        $smarty = new Smarty();
+        $showPage=new AutorizeModel();
+        $r=$showPage->getFromDB($_SESSION['login']);
+                   
+        $smarty->assign('name', $r['name']);   
+        $smarty->assign('sname', $r['sname']);   
+        $smarty->assign('email', $r['email']);   
+        $smarty->assign('login', $r['login']);   
+        $smarty->assign('pass', $r['password']);   
+        $smarty->assign('id', $r['id']);   
+        $smarty->display('view/cform.tpl');
+    }
+    
+    public function showPage(){
+        $smarty = new Smarty();
+        $showPage = new AutorizeModel();
+        
+        if(isset($_POST['pass'])){
+            $val=new Validator();
+            $info=$_POST;
+            if(!isset($info['email'])||
+                !isset($info['login'])||
+                !isset($info['name'])||
+                !isset($info['sname'])||
+                !isset($info['pass'])||
+                !isset($info['pass_confirmation'])){
+                
+                    $smarty->assign('name', $info['name']);   
+                    $smarty->assign('sname', $info['sname']);   
+                    $smarty->assign('id', $info['id']);   
+                    $smarty->assign('email', $info['email']);   
+                    $smarty->assign('login', $info['login']);   
+                    $smarty->assign('pass', $info['pass']);   
+                             
+                    $smarty->display('view/badCForm.tpl');
+                
+            }elseif($val->cChangeDBLogin($info['login'], $info['id'])){
+                
+                $smarty->assign('name', $info['name']);   
+                $smarty->assign('sname', $info['sname']);   
+                $smarty->assign('id', $info['id']);   
+                $smarty->assign('email', $info['email']);   
+                $smarty->assign('login', $info['login']);   
+                $smarty->assign('pass', $info['pass']);   
+                             
+                $smarty->display('view/badChangeLogin.tpl');
+                
+            }elseif($val->cChangeDBEmail($info['email'], $info['id'])){
+                
+                $smarty->assign('name', $info['name']);   
+                $smarty->assign('sname', $info['sname']);   
+                $smarty->assign('id', $info['id']);   
+                $smarty->assign('email', $info['email']);   
+                $smarty->assign('login', $info['login']);   
+                $smarty->assign('pass', $info['pass']); 
+                             
+                $smarty->display('view/badChangeEmail.tpl');
+                
+            }elseif(!$val->validEmail($info['email'])||
+                    $val->validText($info['login'], 4, 10)||
+                    $val->validText($info['name'], 4, 20)||
+                    $val->validText($info['sname'], 4, 20)||
+                    $val->validText($info['pass'], 6, 10)||
+                    $val->validID($info['id'])||
+                    $info['pass_confirmation'] != $info['pass']){
+                    
+                        $smarty->assign('name', $info['name']);   
+                        $smarty->assign('sname', $info['sname']);   
+                        $smarty->assign('id', $info['id']);   
+                        $smarty->assign('email', $info['email']);   
+                        $smarty->assign('login', $info['login']);   
+                        $smarty->assign('pass', $info['pass']); 
+
+                    $smarty->display('view/badCForm.tpl');
+            
+                       
+                        
+            }else{
+                
+                $showPage->updateDB($info['id'], $info['name'], $info['sname'], $info['email'], $info['login'], $info['pass']);
+                
+                $_SESSION['login']=$info['login'];
+                $r = $showPage->getFromDB($_SESSION['login']);
+                $smarty->assign('pinfo', $r);
+                $smarty->display('view/show.tpl');   
+            }
+                  
+        }else{
+            $r=$showPage->getFromDB($_SESSION['login']);
+            $smarty->assign('pinfo', $r);
+            $smarty->display('view/show.tpl');
+        }
+    }
+}
+        
+        
+        
+        
+        
+        
+        
+        

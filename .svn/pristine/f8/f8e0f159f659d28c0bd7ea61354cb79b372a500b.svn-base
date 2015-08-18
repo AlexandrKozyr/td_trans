@@ -1,0 +1,110 @@
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-03-30 05:04:17
+         compiled from "view\badAForm.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:3064255189c3632f474-86358927%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'b4bf9abedbbd1fb517663950b08fc935ad58a1b6' => 
+    array (
+      0 => 'view\\badAForm.tpl',
+      1 => 1427677252,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '3064255189c3632f474-86358927',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55189c3644d4d9_83085769',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55189c3644d4d9_83085769')) {function content_55189c3644d4d9_83085769($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('view/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+
+<div class="page-header login autorize">
+    <p style="color: red">
+        <b>
+            Wrong login or password! Try againe or recover them!
+        </b>
+    </p> 
+    <form class="form-signin " action='index.php?auto=1' method="post">
+        <h2>Login panel</h2> 
+        <p>
+            login:
+            <input type="text" name='log' data-validation="length" data-validation-length="4-10">
+        
+            Password:
+            <input type="password" name='pass' data-validation="length" data-validation-length="6-10">
+        </p>
+        <p>
+            <button class="btn btn-primary" type="submit">Autorize</button>
+        </p>
+    </form>
+    <p>
+        <button class="btn btn-primary" onclick="registerShow();">I am a new client</button>
+    </p>
+    <p>
+        <button class="btn btn-primary" onclick="recoverShow();">I fogot my password or login</button>
+    </p>
+</div>
+<div class="page-header register" hidden="true">
+    <form class="form-signin" action='index.php?regis=1' method="post">
+        <h2>
+            Registration panel
+        </h2>
+        
+        <p>
+            Your Name (4-20 characters):
+        </p>
+        <input type="text" name='name' data-validation="length" data-validation-length="4-20">
+        <p>
+            Your Surname (4-20 characters):
+        </p>
+        <input type="text" name='sname' data-validation="length" data-validation-length="4-20">
+        <p>
+            Your Email:
+        </p>
+        <input type="text" name='email' data-validation="email">
+        <p>
+           Login (4-10 characters):
+        </p>
+        <input type="text" name='login' data-validation="length" data-validation-length="4-10">
+        <p>
+            Password (6-10 characters):
+        </p>
+        <input type="password" name='pass_confirmation' data-validation="length" data-validation-length="6-10">
+        <p>
+            Confirm password (6-10 characters):
+        </p>
+        <input type="password" name='pass'  data-validation="confirmation">
+        <p>
+            <button class="btn btn-primary" type="submit">Registration</button>
+        </p>
+    </form>
+    <p>
+        <button class="btn btn-primary" onclick="autorizeShow();">Go to Login panel</button>
+    </p>
+</div>
+<div class="page-header recover" hidden="true">
+    <form class="form-signin" action='index.php?recov=1' method="post">
+        <h2>Recovery panel</h2> 
+        <p>
+        Put below your registration email. A letter with your login and password will be send.
+        <p>
+            Your email:
+            <input type="text" name='email' data-validation="email">
+        </p>
+        <p>
+            <button class="btn btn-primary" type="submit">Send</button>
+        </p>
+    </form>
+    <p>
+        <button class="btn btn-primary" onclick="autorizeShow();">Go to Login panel</button>
+    </p>
+</div>
+
+<?php echo $_smarty_tpl->getSubTemplate ('view/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+
+<?php }} ?>

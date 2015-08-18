@@ -1,0 +1,22 @@
+
+$(function(){
+   $.validate({
+        modules : 'security'
+    }); 
+});
+function autorizeShow(){
+    $('.recover').hide();
+    $('.register').hide();
+    $('.autorize').show();
+}
+function recoverShow(){
+    $('.recover').show();
+    $('.register').hide();
+    $('.autorize').hide();
+}
+function registerShow(){
+    $('.recover').hide();
+    $('.register').show();
+    $('.autorize').hide();
+}
+

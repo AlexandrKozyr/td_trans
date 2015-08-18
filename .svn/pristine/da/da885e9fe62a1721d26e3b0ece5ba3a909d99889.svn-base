@@ -1,0 +1,130 @@
+<?php
+
+/* 
+ * @autor Alexandr Kozyr kozyr1av@gmail.com;
+ * @ phone: +380662053435;
+ * @ Validator класс отвечает за валидацию на стороне PHP;
+ */
+
+
+class Validator {
+        
+    public function clean($v){
+            $v = trim($v);
+            $v = stripslashes($v);
+            $v = strip_tags($v);
+            $v = htmlspecialchars($v);
+            
+            return $v;
+    }
+    
+    public function cDBPass($pass){
+        $db=DBConnect::connect();
+        $q="SELECT `password` FROM `users`  WHERE `password`= :pass AND `conf` = '1'";     
+        $sth= $db-> prepare($q);
+        $sth-> bindParam(':pass', $this->clean($pass), PDO::PARAM_STR);
+        $sth->execute();
+        $r = $sth->fetchColumn();
+        $match=false;
+        if (is_string($r)){
+            $match=true;// совпадение 
+        }
+        return $match;
+    }
+    
+    public function cDBLogin($login){
+        $db=DBConnect::connect();
+        $q="SELECT `login` FROM `users`  WHERE `login`= :login AND `conf` = '1'";     
+        $sth= $db-> prepare($q);
+        $sth-> bindParam(':login', $this->clean($login), PDO::PARAM_STR);
+        $sth->execute();
+        $r = $sth->fetchColumn();
+        $match=false;
+        if (is_string($r)){
+            $match=true;
+        }
+        return $match;
+    }
+    
+    public function rDBLogin($login){
+        $db=DBConnect::connect();
+        $q="SELECT `login` FROM `users`  WHERE `login`= :login";     
+        $sth= $db-> prepare($q);
+        $sth-> bindParam(':login', $this->clean($login), PDO::PARAM_STR);
+        $sth->execute();
+        $r = $sth->fetchColumn();
+        $match=false;
+        if (is_string($r)){
+            $match=true;// совпадение 
+        }
+        return $match;
+    }
+    
+    public function cChangeDBLogin($login, $id){
+        $db=DBConnect::connect();
+        $q="SELECT `login` FROM `users`  WHERE `login`= :login AND `id` != :id";     
+        $sth= $db-> prepare($q);
+        $sth-> bindParam(':login', $this->clean($login), PDO::PARAM_STR);
+        $sth-> bindParam(':id', $this->clean($id), PDO::PARAM_INT);
+        $sth->execute();
+        $r = $sth->fetchColumn();
+        $match=false;
+        if (is_string($r)){
+            $match=true;// совпадение 
+        }
+        return $match;
+    }
+    
+    public function cDBEmail($email){
+        $db=DBConnect::connect();
+        $q="SELECT `login` FROM `users`  WHERE `email`= :email AND `conf` = '1'";     
+        $sth= $db-> prepare($q);
+        $sth-> bindParam(':email', $this->clean($email), PDO::PARAM_STR);
+        $sth->execute();
+        $r = $sth->fetchColumn();
+        $match=false;
+        if (is_string($r)){
+            $match=true;// совпадение 
+        }
+        return $match;
+    }
+    
+    public function cChangeDBEmail($email, $id){
+        $db=DBConnect::connect();
+        $q="SELECT `login` FROM `users`  WHERE `email`= :email AND `id` != :id";     
+        $sth= $db-> prepare($q);
+        $sth-> bindParam(':email', $this->clean($email), PDO::PARAM_STR);
+        $sth-> bindParam(':id', $this->clean($id), PDO::PARAM_INT);
+        $sth->execute();
+        $r = $sth->fetchColumn();
+        $match=false;
+        if (is_string($r)){
+            $match=true;// совпадение 
+        }
+        return $match;
+    }
+        
+    public function validText($data, $min, $max){
+        $result = false;
+        if((mb_strlen($this->clean($data)) < $min || mb_strlen($this->clean($data)) > $max)){
+            $result=true;
+        }
+        return $result;
+    }
+    
+    public function validID($data){
+        $result = false;
+        if(is_int($this->clean($data))){
+            $result=true;
+        }
+        
+    }
+    
+    public function validEmail($email){
+        $result = false;
+        if(filter_var($this->clean($email), FILTER_VALIDATE_EMAIL) == true){
+            $result=true;
+        }
+        return $result;   
+    }
+}

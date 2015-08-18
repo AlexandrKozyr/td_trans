@@ -1,0 +1,37 @@
+<?php
+
+/* 
+ * @autor Alexandr Kozyr kozyr1av@gmail.com;
+ * @ phone: +380662053435
+ * @ класс SendMail отправляет письма для подверждения и реестрации и востановление пароля;
+ */
+
+
+
+class SendMail {
+    
+    public $email;
+       
+    public function sendRegister($login){
+        
+        $mes='Для того что бы активировать свою учетную записть перейдите по ссылке: http://localhost/acceptic/index.php?conf='.$login;
+        $message = wordwrap($mes, 70, "\r\n");
+        $headers = 'From: admin@acceptic.com' . "\r\n" .
+                    'Reply-To: admin@acceptic.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+        mail($this->email, 'Registration', $message, $headers);
+    }
+    
+    public function sendRecover($login, $pass){
+        
+        $mes='Ваш логин : '.$login.'; Ваш пароль : '.$pass;
+        $message = wordwrap($mes, 70, "\r\n");
+        $headers = 'From: admin@acceptic.com' . "\r\n" .
+                    'Reply-To: admin@acceptic.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+        mail($this->email, 'Recover your login and password', $message, $headers);
+    }
+    
+}

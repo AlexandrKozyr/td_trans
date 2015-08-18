@@ -1,0 +1,27 @@
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-03-30 05:09:37
+         compiled from "view\footer.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1785355189c32788fe2-99977705%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '91ee72e4b0df1400d54bafe961dbbf5a2038c950' => 
+    array (
+      0 => 'view\\footer.tpl',
+      1 => 1427677774,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1785355189c32788fe2-99977705',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55189c3278cd84_50407324',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55189c3278cd84_50407324')) {function content_55189c3278cd84_50407324($_smarty_tpl) {?>        </div>
+        <div class="page-header">
+            <p style="text-align: right; font-style: italic;"><b>Created by Kozyr Alexandr</b></p>
+        </div>
+        </body>
+    </html><?php }} ?>

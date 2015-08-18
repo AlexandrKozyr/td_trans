@@ -1,0 +1,35 @@
+{include file='view/header.tpl'}
+<div class="hero-unit">
+  <table class="table table-striped">
+  <caption style='font-family: Georgia'><h2>Your personal data</h2></caption>
+  <thead bgcolor='#B0C4DE'>
+    <tr>
+      <th>Your Name</th>
+      <th>Your Second Name</th>
+      <th>Your Email</th>
+      <th>Your login</th>
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+            <td>
+                {$pinfo['name']}
+            </td>
+            <td>
+                {$pinfo['sname']}
+            </td>
+            <td>
+                {$pinfo['email']}
+            </td>
+            <td>
+                {$pinfo['login']}
+            </td>
+        </tr>
+    </tbody>
+</table>
+    <a href="index.php?change={$pinfo['id']}"><button type="button" class="btn btn-primary" style="position: relative; float: right;">Change my info</button></a>   
+    <a href="index.php?del={$pinfo['id']}"><button type="button" class="btn btn-primary" style="position: relative; float: right;">Delete account</button></a>
+    <a href="index.php?logout=lout"><button type="button" class="btn btn-primary" style="position: relative; float: right;">Logout</button></a>
+    
+</div>
+{include file='view/footer.tpl'}

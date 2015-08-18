@@ -1,0 +1,401 @@
+.car_check{
+    margin-bottom: 20px;
+    float: left;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 1px;
+}
+
+.car_check_title{
+    font: 22px arial; 
+    padding-bottom: 25px;
+}
+
+@media screen and (max-width: 1035px) {
+    .car_check_title {
+        text-align: center;
+    }
+}
+
+.car_check_sub_header {
+    width: 100%;
+    height: 40px;
+    background: #faac06;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 5px 5px 0 0;
+    font: 22px arial;
+    font-weight: bold;
+    color: #fff;
+    line-height: 35px;
+    max-width: 920px;
+    min-width: 290px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+@media screen and (max-width: 1035px) {
+    .car_check_sub_header {
+        width: 314px;
+        margin: 0 auto;
+        padding: 0 190px;
+    }
+}
+
+@media screen and (max-width: 775px) {
+    .car_check_sub_header {
+        width: 314px;
+        margin: 0 auto;
+        padding: 0 90px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .car_check_sub_header {
+        width: 314px;
+        padding: 0;
+    }
+}
+
+.car_check_body {
+    border: 2px solid #faac06;
+    border-radius: 0 0 5px 5px;
+    padding: 10px;
+    max-width: 896px;
+    min-width: 290px;
+}
+
+@media screen and (max-width: 1035px) {
+    .car_check_body {
+        width: 290px;
+        margin: 0 auto;
+        padding: 0 200px;
+    }
+}
+
+@media screen and (max-width: 775px) {
+    .car_check_body {
+        width: 290px;
+        margin: 0 auto;
+        padding: 0 100px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .car_check_body {
+        width: 290px;
+        padding: 0 10px;
+    }
+}
+
+.btn_choose{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    clear: both;
+}
+
+.auto_parts_category{
+    font: 22px arial;
+    color: #262626;
+    padding-top: 20px;
+    visibility:hidden;
+}
+
+.auto_parts_sub_category{
+    color: #ffa500;
+}
+
+table, tr, th, td {
+    padding: 0;
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0 !important;
+}
+/* ......................... */
+
+.container{
+    display: inline-block;
+    min-width: 260px;
+    padding-top: 15px;
+}
+
+.wrapper-dropdown-3 {
+    position: relative;
+    width: 280px;
+    margin: 0 auto;
+    padding: 6px;
+    background: #fff;
+    border-radius: 3px;
+    border: 2px solid #d7d6d6;
+    box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+    cursor: pointer;
+    outline: none;
+    color: #555555;
+}
+
+.wrapper-dropdown-3:after {
+    content: "";
+    background: url('dropdown_arrow.jpg') no-repeat;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    right: 0;
+    top: 4px;
+}
+
+.wrapper-dropdown-3 .dropdown {
+    position: absolute;
+    margin: 12px -2px;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: inherit;
+    border: 2px solid #d7d6d6;
+    font-weight: normal;
+    list-style: none;
+    opacity: 0;
+    pointer-events: none;
+    max-height: 445px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.wrapper-dropdown-3 .dropdown li a {
+    display: block;
+    padding: 5px 0 0 5px;
+    text-decoration: none;
+    color: #231f20;
+
+}
+
+.wrapper-dropdown-3 .dropdown li:first-of-type:hover a {
+    display: block;
+    cursor: default;
+    text-decoration: none;
+    background-color: transparent;
+    color: #231f20;
+
+}
+
+.wrapper-dropdown-3 .dropdown li i {
+    float: right;
+    color: inherit;
+}
+
+
+/* Hover state */
+
+.wrapper-dropdown-3 .dropdown li:hover a {
+    background: #ffa500;
+    color: #fff;
+}
+
+/* Active state */
+
+.wrapper-dropdown-3.active .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* No CSS3 support */
+
+.no-opacity       .wrapper-dropdown-3 .dropdown,
+.no-pointerevents .wrapper-dropdown-3 .dropdown {
+    display: none;
+    opacity: 1; /* If opacity support but no pointer-events support */
+    pointer-events: auto; /* If pointer-events support but no pointer-events support */
+}
+
+.no-opacity       .wrapper-dropdown-3.active .dropdown,
+.no-pointerevents .wrapper-dropdown-3.active .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    font: 14px arial;
+}
+
+.wrapper-dropdown-3 span {
+    font: 14px arial;
+}
+
+
+#cssmenu ul,
+#cssmenu li,
+#cssmenu span,
+#cssmenu a {
+    margin: 0;
+    padding: 0;
+
+}
+
+#cssmenu {
+    line-height: 1;
+    background: #fff;
+    width: auto;
+    visibility:hidden;
+    padding: 20px;
+    border-top: 2px solid #ffa500;
+    clear: both;
+}
+
+#cssmenu a {
+    background: #fff;
+    color: #666;
+    display: block;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 1px 13px 0 6px;
+}
+
+#cssmenu li:hover >a, .menu_2 li:hover >a, .menu_3 li:hover >a, .menu_4 li:hover >a{
+    color: #007db7;
+    background-color: rgba(255, 208, 21, 0.2) !important;
+}
+
+#cssmenu ul {
+    list-style: none;
+}
+
+#cssmenu > a {
+    color: #666;
+    font-size: 1.125em;
+}
+
+
+/* menu border */
+.menu_1 > ul, .menu_2 > ul, .menu_3 > ul {
+    height: auto;
+    width: 325px;
+    border-right: 1px dashed #b2b2b2;
+}
+
+.menu_2 ul{
+    height: 100%;
+}
+
+.menu_3 ul{
+    height: 100% !important;
+}
+
+#cssmenu .has-sub {
+    z-index: 1;
+}
+
+#cssmenu .has-sub div ul, .menu_4 > ul{
+    -webkit-transition-delay: 0.5s !important;
+    -o-transition-delay: 0.5s !important;
+    -moz-transition-delay: 0.5s !important;
+    transition-delay: 0.5s !important;  
+}
+
+.menu_2 {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 100%;
+}
+
+.menu_3 {
+    position: absolute;
+    left: 100%;
+    margin-left: 1px;
+    top: 0;
+    height: 100%;
+}
+
+.menu_4 {
+    position: absolute;
+    left: 100%;
+    margin-left: 1px;
+    display: none;
+    top: 0;
+}
+
+.has-sub:hover > .menu_2 > ul {
+    top: 0;
+}
+
+.has-sub:hover > .menu_3 > ul {
+    top: 0;
+}
+
+.has-sub:hover > .menu_4 > ul {
+    top: 0;
+}
+
+.menu_2 ul {
+    position: absolute;
+    visibility: hidden;
+    left: 0;
+}
+
+.menu_3 ul {
+    position: absolute;
+    visibility: hidden !important;
+    left: 0;
+}
+
+.menu_4 ul {
+    position: absolute;
+    left: 0;
+    width: 325px;
+}
+
+.menu_1 li:hover > .menu_2 ul{
+    visibility: visible;
+}
+
+.menu_2 li:hover > .menu_3 ul{
+    visibility: visible !important;
+}
+
+.menu_3 li:hover > .menu_4{
+    display: block;
+}
+
+#cssmenu .has-sub ul li a {
+    background: #fff;
+    filter: none;
+    display: block;
+}
+
+.elements-decoration{
+    text-decoration: none;
+    display: flex;
+}
+
+.arrow_menu_font{
+    display: inline-block;
+    font-family: 'MS Gothic';
+    font-weight: bold;
+    font-size: 0.9375em;
+    padding-left: 10px;
+    line-height: 20px;
+}
+
+.menu_1{
+    position: relative;
+    float: left;
+    top: 0;
+}
+
+.steps{
+    float: left;
+    position: relative;
+    z-index: 4;
+    margin-left: -320px;
+    width: 320px;
+}
+
+@media screen and (max-width: 1260px) {
+    .steps {
+        opacity:0;
+        z-index: 0;
+    }
+}

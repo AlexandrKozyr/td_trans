@@ -1,0 +1,11 @@
+{include file='view/header.tpl'}
+<div class="hero-unit">
+    <h2>
+        Check you email to proceed!
+    </h2>
+    <p>
+        <a href="index.php"><button class="btn btn-primary">GO to Autorize Page</button></a>
+    </p>
+</div>
+
+{include file='view/footer.tpl'}

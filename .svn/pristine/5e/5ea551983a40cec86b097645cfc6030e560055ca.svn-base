@@ -1,0 +1,48 @@
+{include file='view/header.tpl'}
+<div class="page-header">
+    <h2>
+        Personal changes panel
+    </h2>
+     
+    <p style="color: red">
+        <b>
+            Something gone wrong! Check all fields!
+        </b>
+    </p> 
+      
+    <p>
+        Change an information your want to and press button below.
+    </p>
+    
+    <form class="form-signin" action='index.php' method="post">
+        <p>
+            Change Your Name (4-20 characters):
+        </p>
+        <input type="text" name='name' value="{$name}" data-validation="length" data-validation-length="4-20">
+        <p>
+            Change Your Surname (4-20 characters):
+        </p>
+        <input type="text" name='sname' value="{$sname}" data-validation="length" data-validation-length="4-20">
+        <p>
+            Change Your Email:
+        </p>
+        <input type="text" name='email' value="{$email}" data-validation="email">
+        <p>
+           Change Login (4-10 characters):
+        </p>
+        <input type="text" name='login' value="{$login}" data-validation="length" data-validation-length="4-10">
+        <p>
+            Change Password (6-10 characters):
+        </p>
+        <input type="password" value="{$pass}" name='pass_confirmation' data-validation="length" data-validation-length="6-10">
+        <p>
+            Change Confirm password (6-10 characters):
+        </p>
+        <input type="password" value="{$pass}" name='pass'  data-validation="confirmation">
+        <p>
+            <button class="btn btn-primary" type="submit">Change</button>
+        </p>
+    </form>
+</div>
+
+{include file='view/footer.tpl'}

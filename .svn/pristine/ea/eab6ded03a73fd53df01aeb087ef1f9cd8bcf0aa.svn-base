@@ -1,0 +1,30 @@
+<?php
+
+/* 
+ * @autor Alexandr Kozyr kozyr1av@gmail.com;
+ * @ phone: +380662053435;
+ * @ класс DBConnect подключает БД (синглтон);
+ * */
+
+class DBConnect {
+    
+    public static $con = null;
+    
+    private function __construct() {}
+    
+    public static  function connect(){
+       
+       if (is_null(self::$con)){
+          $dns= 'mysql:host=localhost;dbname=acceptic';
+          $user = 'root';
+          $password = '';
+          $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',);
+          
+           self::$con= new PDO($dns, $user, $password, $options);
+           
+       }
+    
+       return self::$con;
+   }
+    
+}

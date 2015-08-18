@@ -1,0 +1,44 @@
+<?php
+/* 
+ * @autor Alexandr Kozyr kozyr1av@gmail.com;
+ * @ phone: +380662053435;
+ * @ класс DBExport подключает БД Transbase и MySQL (используется паттерн синглтон);
+ * */    
+
+class DBExport {
+        
+    public function export($table_name) {
+        echo "$table_name - processing... ";
+        flush();
+
+        $query = "SELECT * FROM " . $table_name;
+        print_r(PDO::getAvailableDrivers());
+        var_dump($this->db);die;
+        $data = odbc_exec($this->db, $query);
+
+        odbc_longreadlen($data, 10485760);
+
+
+        while($row = odbc_fetch_array($data)) {
+            foreach($row as $key => $value) {
+                $keys[] = "`" . $key . "`";
+                $values[] = "'" . mysql_real_escape_string($value) . "'";
+            }
+
+            $mysql_query = "INSERT INTO `" . $table_name . "` (" . implode(",", $keys) . ") VALUES (" . implode(",", $values) . ")";
+            mysql_query($mysql_query);
+            //echo "$mysql_query<hr>";
+            set_time_limit(3600);
+            unset($keys);
+            unset($values);
+            unset($row);
+        }
+        echo "completed!<br>";
+        flush();
+    }
+}
+
+    
+    
+
+

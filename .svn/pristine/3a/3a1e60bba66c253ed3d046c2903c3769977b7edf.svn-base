@@ -1,0 +1,7 @@
+<?php  
+
+include 'DBConnect.class.php';
+var_dump(DBConnect::TBase());
+//    
+//    $tecdoc = new Tecdoc();
+//    $tecdoc->export("tecdoc_tof_search_tree");

@@ -1,0 +1,56 @@
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-03-30 05:10:52
+         compiled from "view\header.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:1051655189c32761c39-97548445%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'b429f21a44ad1135dbaa86e48d8d54dba8aca3a5' => 
+    array (
+      0 => 'view\\header.tpl',
+      1 => 1427677849,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '1051655189c32761c39-97548445',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_55189c32774df9_83622486',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_55189c32774df9_83622486')) {function content_55189c32774df9_83622486($_smarty_tpl) {?><html>
+    <head>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <?php echo '<script'; ?>
+ src="js/jquery.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="js/autorize.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"><?php echo '</script'; ?>
+>
+    <style>
+      body {
+        padding: 6px;
+        background-color: darkgrey;
+      }
+      .page-header{
+          background-color:  whitesmoke;
+          padding: 10px;
+          border: solid 1px black;
+          border-radius: 8px;
+      }
+      
+    </style>
+    </head>
+        <body background=blue;>
+            <div class="page-header">
+                <a href="index.php?logout=lout">
+                    <h1 style="text-shadow: 2px 2px 4px black; color: grey; text-align: center;"><span style="color: black">Acceptic</span>book (Abook) </h1>
+                    <h4 style="color: grey; text-align: center;"><span style="color: black">(Your Own Contactbook)</h4>
+                </a>
+            </div>
+                <div class="container">
+                <?php }} ?>

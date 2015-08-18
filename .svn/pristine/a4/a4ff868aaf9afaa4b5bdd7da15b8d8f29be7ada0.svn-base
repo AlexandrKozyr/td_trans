@@ -1,0 +1,46 @@
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2015-03-30 05:06:14
+         compiled from "view\badRecForm.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:284545518a12ac49490-22708237%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '62bb28eb72435cd048782c15f709d6c6a89699be' => 
+    array (
+      0 => 'view\\badRecForm.tpl',
+      1 => 1427677569,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '284545518a12ac49490-22708237',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5518a12ad643b2_38660763',
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_5518a12ad643b2_38660763')) {function content_5518a12ad643b2_38660763($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('view/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+<div class="page-header">
+    <p style="color: red">
+        <b>
+            You put wrong email. Check your email!
+        </b>
+    </p> 
+    <form class="form-signin" action='index.php?recov=1' method="post">
+        <h2>Recovery panel</h2> 
+        <p>
+        Put below your registration email. A letter with your login and password will be send.
+        <p>
+            Your email:
+            <input type="text" name='email' data-validation="email">
+        </p>
+        <p>
+            <button class="btn btn-primary" type="submit">Send</button>
+        </p>
+    </form>
+    <a href="index.php"><button class="btn btn-primary">Go to Autorize Page</button></a>
+</div>
+
+<?php echo $_smarty_tpl->getSubTemplate ('view/footer.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php }} ?>
